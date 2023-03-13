@@ -157,13 +157,13 @@ df["last_order_date"].max() #Timestamp('2021-05-30 00:00:00') - 1.6.2021
 today_date = dt.datetime(2021,6,1)
 type(today_date)
 
-rfm = df.groupby("master_id").agg({"last_order_date": lambda last_order_date: (today_date - last_order_date.max()).days, #son alışveriş tarihi: bugünün tarihinden müşterinin en son satın alma tarihini çıkar. gün cinsinden ifade et.
-                                    "order_num_total_ever": lambda order_num_total_ever: order_num_total_ever, #kaç fatura var, kaç kez alışveriş yapılmış
-                                    "customer_value_total_ever": lambda customer_value_total_ever: customer_value_total_ever.sum()}) #ödenen ücretin toplamını al
+rfm = df.groupby("master_id").agg({"last_order_date": lambda last_order_date: (today_date - last_order_date.max()).days,
+                                    "order_num_total_ever": lambda order_num_total_ever: order_num_total_ever,
+                                    "customer_value_total_ever": lambda customer_value_total_ever: customer_value_total_ever.sum()}) 
 
 
 
-rfm.columns = ["recency", "frequency","monetary"] #değişken isimlerini değiştir.
+rfm.columns = ["recency", "frequency","monetary"]
 rfm.head()
 
 # GÖREV 3: RF ve RFM Skorlarının Hesaplanması
@@ -189,7 +189,7 @@ rfm["RF_SCORE"].head()
 #Adım 1: Oluşturulan RF skorları için segment tanımlamaları yapınız.
 
 seg_map = {
-    r'[1-2][1-2]': 'hibernating', # 1.elemanda 1yada2, 2. elemanda 1-2görürsen: hibern. yaz
+    r'[1-2][1-2]': 'hibernating', 
     r'[1-2][3-4]': 'at_Risk',
     r'[1-2]5': 'cant_loose',
     r'3[1-2]': 'about_to_sleep',
@@ -245,7 +245,7 @@ def pre_df(dataframe):
 
 pre_df(df)
 
-def create_rfm(dataframe, csv=False): #csv=False çıktının direk csv haliyle oluşmasını sağlar. ön tanımlı değerine csv oluşturma diyoruz.
+def create_rfm(dataframe, csv=False): 
 
         # RFM METRIKLERININ HESAPLANMASI
     today_date = dt.datetime(2021,6,1)
