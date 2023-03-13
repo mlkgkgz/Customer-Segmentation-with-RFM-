@@ -1,0 +1,1 @@
+# RFM-ile-M-teri-Segmentasyonu-Customer-Segmentation-with-RFM-
